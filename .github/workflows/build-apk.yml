@@ -1,35 +1,46 @@
 name: Compilar APK Android
+
 on:
   workflow_dispatch:
   push:
     branches: [main]
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
+
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
           cache: true
+
       - name: Crear estructura Android
-        run: flutter create --platforms=android --org com.example --project-name recuento_inventario .
+        run: flutter create --platforms=android --org com.example --project-name inventario_cecosa .
+
       - name: Instalar exportacion Descargas
-        run: cp native/MainActivity.kt android/app/src/main/kotlin/com/example/recuento_inventario/MainActivity.kt
+        run: cp native/MainActivity.kt android/app/src/main/kotlin/com/example/inventario_cecosa/MainActivity.kt
+
       - name: Eliminar test automatico
         run: rm -rf test
+
       - name: Dependencias
         run: flutter pub get
+
       - name: Compilar APK
         run: flutter build apk --release
+
       - name: Publicar APK
         uses: actions/upload-artifact@v4
         with:
-          name: recuento-inventario-apk
+          name: inventario-cecosa-apk
           path: build/app/outputs/flutter-apk/app-release.apk
           if-no-files-found: error
           retention-days: 30
