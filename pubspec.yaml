@@ -1,18 +1,18 @@
-name: recuento_inventario
-description: Recuento de inventario con lector externo y exportacion Excel.
+name: inventario_cecosa
+description: Inventario CECOSA para Android 14.
 publish_to: 'none'
-version: 1.2.1+5
+version: 1.3.0+6
 environment:
   sdk: '>=3.4.0 <4.0.0'
 dependencies:
-  flutter:
-    sdk: flutter
+  flutter: {sdk: flutter}
   sqflite: ^2.4.2
   path: ^1.9.1
   excel: ^4.0.6
   intl: ^0.20.2
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
+  flutter_test: {sdk: flutter}
 flutter:
   uses-material-design: true
+  assets:
+    - assets/warehouse.png
